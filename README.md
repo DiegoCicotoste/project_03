@@ -1,6 +1,6 @@
 # project_03
 
-A new Flutter project.
+My awesome Flutter project.
 
 ## Getting Started
 
