@@ -63,7 +63,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
               MaterialPageRoute(builder: (context) => MyStatefulWidget()),
             );
             var route =new MaterialPageRoute(
-                builder:(BuildContext context) => new MyStatefulWidget(value: uName.text));
+                builder:(BuildContext context) => new MyStatefulWidget(: uName.t));
             Navigator.of(context).push(route);
 
             showDialog(
