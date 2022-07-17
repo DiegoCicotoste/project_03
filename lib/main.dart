@@ -11,30 +11,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return new MaterialApp(
       title: 'College Yelp',
-      home: MyCustomForm(),
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) =>  signIn(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        HomeScreen.pageName : (context) =>  HomeScreen(),
+      },
     );
   }
 }
 
 // Define a custom Form widget.
-class MyCustomForm extends StatefulWidget {
-  const MyCustomForm({super.key});
+class signIn extends StatefulWidget {
 
   @override
-  State<MyCustomForm> createState() => _MyCustomFormState();
+  State<signIn> createState() => _signInState();
 }
 
 // Define a corresponding State class.
 // This class holds the data related to the Form.
-class _MyCustomFormState extends State<MyCustomForm> {
+class _signInState extends State<signIn> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
   var uName = new TextEditingController();
-
-  bool diegoL = false;
-  bool davidL = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: TextField(
-
+          decoration: InputDecoration(
+              hintText: 'Username'),
           controller: uName,
 
         ),
@@ -58,13 +60,12 @@ class _MyCustomFormState extends State<MyCustomForm> {
 
         onPressed: () {
           if (uName.text == "Diego") {
-            Navigator.push(
+            Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder: (context) => MyStatefulWidget()),
+              HomeScreen.pageName,
+              arguments: uName.text,
             );
-            var route =new MaterialPageRoute(
-                builder:(BuildContext context) => new MyStatefulWidget(: uName.t));
-            Navigator.of(context).push(route);
+
 
             showDialog(
               context: context,
@@ -73,18 +74,15 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   // Retrieve the text the that user has entered by using the
                   // TextEditingController.
                   content: Text("Welcome " + uName.text),
-
-                  scrollable: diegoL = true,
-
-
 
                 );
               },
             );
           } else if (uName.text == "David") {
-            Navigator.push(
+            Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder: (context) => MyStatefulWidget(value: '',)),
+              HomeScreen.pageName,
+              arguments: uName.text,
             );
 
             showDialog(
@@ -94,7 +92,6 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   // Retrieve the text the that user has entered by using the
                   // TextEditingController.
                   content: Text("Welcome " + uName.text),
-                  scrollable: davidL = true,
                 );
               },
             );
