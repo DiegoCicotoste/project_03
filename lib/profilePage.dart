@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:project_03/homePage.dart';
 import 'package:project_03/miamihackspost.dart';
 
 void main(){
@@ -19,6 +20,14 @@ class _profilePage extends State<profilePage> {
   final myController = TextEditingController();
   final myController2 = TextEditingController();
 
+  final dayC = TextEditingController();
+  final monthC = TextEditingController();
+  final yearC = TextEditingController();
+
+  String dayB = "";
+  String monthB = "";
+  String yearB = "";
+
   String drop = '2015';
 
   @override
@@ -30,8 +39,6 @@ class _profilePage extends State<profilePage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
@@ -55,6 +62,7 @@ class _profilePage extends State<profilePage> {
                         maxWidth: 40,
                       ),
                       child: TextField(
+                        controller: monthC,
                         decoration: InputDecoration(
                             hintText: 'mm'),
                         keyboardType: TextInputType.number,
@@ -73,6 +81,7 @@ class _profilePage extends State<profilePage> {
                         maxWidth: 30,
                       ),
                       child: TextField(
+                        controller: dayC,
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
                           LengthLimitingTextInputFormatter(2),
@@ -88,6 +97,7 @@ class _profilePage extends State<profilePage> {
                         maxWidth: 30,
                       ),
                       child: TextField(
+                        controller: yearC,
                         decoration: InputDecoration(
                             hintText: 'yy'),
                         keyboardType: TextInputType.number,
@@ -114,9 +124,11 @@ class _profilePage extends State<profilePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: DropdownButton<String>(
                         value: drop,
-                        icon: const Icon(Icons.arrow_downward, color: Colors.green,),
+                        icon: const Icon(
+                          Icons.arrow_downward, color: Colors.green,),
                         elevation: 16,
-                        style: const TextStyle(color: Colors.green, fontSize: 20),
+                        style: const TextStyle(
+                            color: Colors.green, fontSize: 20),
                         underline: Container(
                           height: 2,
                           color: Colors.green,
@@ -126,7 +138,20 @@ class _profilePage extends State<profilePage> {
                             drop = newValue!;
                           });
                         },
-                        items: <String>['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023','2024', '2025', '2026']
+                        items: <String>[
+                          '2015',
+                          '2016',
+                          '2017',
+                          '2018',
+                          '2019',
+                          '2020',
+                          '2021',
+                          '2022',
+                          '2023',
+                          '2024',
+                          '2025',
+                          '2026'
+                        ]
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -143,10 +168,18 @@ class _profilePage extends State<profilePage> {
       ),
 
 
-
       floatingActionButton: FloatingActionButton(
         onPressed: () {
 
+          dayB = dayC.text;
+          monthB = monthC.text;
+          yearB = yearC.text;
+
+          Navigator.pushNamed(
+            context,
+            HomeScreen.pageName,
+            arguments: MiamiHacksPost(titleMessage: "", tipMessage: "", userName: "",day: dayB, month: monthB, year: yearB, graduationY: drop),
+          );
 
           showDialog(
             context: context,
@@ -154,12 +187,11 @@ class _profilePage extends State<profilePage> {
               return AlertDialog(
                 // Retrieve the text the that user has entered by using the
                 // TextEditingController.
-                content: Text("Your changes have been saved!" ),
+                content: Text("Your changes have been saved!"),
 
               );
             },
           );
-
         },
         tooltip: 'Show me the value!',
         child: const Icon(Icons.check),

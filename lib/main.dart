@@ -81,12 +81,8 @@ class _signInState extends State<signIn> {
             Navigator.pushNamed(
               context,
               HomeScreen.pageName,
-             arguments: MiamiHacksPost(titleMessage: "", tipMessage: "", userName: uName.text),
+             arguments: MiamiHacksPost(titleMessage: "Try Posting Something!", tipMessage: "Just Press The Post Button and post your hack", userName: uName.text,day: "", month: "", year: "", graduationY: ""),
             );
-
-
-
-
             showDialog(
               context: context,
               builder: (context) {
@@ -102,7 +98,7 @@ class _signInState extends State<signIn> {
             Navigator.pushNamed(
               context,
               HomeScreen.pageName,
-              arguments: MiamiHacksPost(titleMessage: "", tipMessage: "", userName: uName.text),
+              arguments: MiamiHacksPost(titleMessage: "Try Posting Something!", tipMessage: "Just Press The Post Button and post your hack", userName: uName.text, day: "", month: "", year: "", graduationY: ""),
             );
 
             showDialog(
@@ -119,7 +115,7 @@ class _signInState extends State<signIn> {
             Navigator.pushNamed(
               context,
               HomeScreen.pageName,
-              arguments: MiamiHacksPost(titleMessage: "", tipMessage: "", userName: uName.text),
+              arguments: MiamiHacksPost(titleMessage: "Try Posting Something!", tipMessage: "Just Press The Post Button and post your hack", userName: uName.text,day: "", month: "", year: "", graduationY: ""),
             );
 
             showDialog(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project_03/main.dart';
 import 'package:project_03/miamihackspost.dart';
 import 'package:project_03/postPage.dart';
-import 'package:project_03/postPageUpdated.dart';
 import 'package:project_03/profilePage.dart';
 
 void main() {
@@ -143,6 +142,14 @@ class _homePostState extends State<homePost> {
 
         Container(
             margin: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.green,
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(10),
+            ),
+
             width: 350,
             child: TextButton(
               child: Text(post.titleMessage,
@@ -170,7 +177,6 @@ class _homePostState extends State<homePost> {
           child: IconButton(icon: Icon(Icons.thumb_up),
             color: widget.iconColor,
             onPressed: () {
-
 
               if(widget.iconColor == Colors.blue) {
                 setState(() {
@@ -211,10 +217,17 @@ class _alreadyInputedCodeState extends State<alreadyInputedCode> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         Container(
             margin: EdgeInsets.all(10),
             width: 350,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.green,
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(10),
+            ),
+
             child: TextButton(
               child: Text(widget.dummyTitle,
                 style: TextStyle(

@@ -5,9 +5,17 @@ class MiamiHacksPost{
   String day = "";
   String month = "";
   String year = "";
+  String graduationY = "";
 
 
-  MiamiHacksPost({required this.titleMessage, required this.tipMessage, required this.userName});
+  MiamiHacksPost({
+    required this.titleMessage,
+    required this.tipMessage,
+    required this.userName,
+    required this.day,
+    required this.month,
+    required this.year,
+  required this.graduationY});
 
 
 }

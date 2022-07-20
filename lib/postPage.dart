@@ -44,6 +44,9 @@ class _postPage extends State<postPage> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tips'),
@@ -90,7 +93,7 @@ class _postPage extends State<postPage> {
           print(widget.titleF);
           print(widget.tipF);
 
-          MiamiHacksPost mhp = MiamiHacksPost(titleMessage:widget.titleF,tipMessage:widget.tipF,userName: "");
+          MiamiHacksPost mhp = MiamiHacksPost(titleMessage:widget.titleF,tipMessage:widget.tipF,userName: "",day: "", month: "", year: "", graduationY: "");
 
           Navigator.pushNamed(context,
               HomeScreen.pageName,
