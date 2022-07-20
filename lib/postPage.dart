@@ -12,23 +12,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'College Yelp',
+      title: 'Miami Hacks',
       theme: ThemeData(
         primaryColor: Colors.orange,
       ),
-      routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) =>  postPage(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        HomeScreen.pageName : (context) =>  HomeScreen(),
-      },
     );
   }
 }
 
 // Define a custom Form widget.
 class postPage extends StatefulWidget {
-  const postPage({super.key});
+
+  final titleController = TextEditingController();
+  final tipController = TextEditingController();
+
+  String titleP = "";
+  String hackP = "";
+
+  postPage({required this.titleP, required this.hackP});
 
   @override
   State<postPage> createState() => _postPage();
@@ -39,21 +40,18 @@ class postPage extends StatefulWidget {
 class _postPage extends State<postPage> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
-  final titleController = TextEditingController();
-  final tipController = TextEditingController();
 
 
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    titleController.dispose();
+    widget.titleController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tips'),
@@ -72,19 +70,18 @@ class _postPage extends State<postPage> {
                     hintText: 'Title'),
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
 
-                controller: titleController,
+                controller: widget.titleController,
 
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
-
                 maxLines: null,
                 decoration: InputDecoration(
-                    hintText: 'Tip'),
+                    hintText: 'Hack'),
                 style: TextStyle(fontSize: 18),
-                controller: tipController,
+                controller: widget.tipController,
               ),
             ),
           ]
@@ -92,34 +89,37 @@ class _postPage extends State<postPage> {
       ),
 
       floatingActionButton: FloatingActionButton(
-        // When the user presses the button, show an alert dialog containing
-        // the text that the user has entered into the text field.
 
         onPressed: () {
-          Navigator.pushNamed(
-            context,
-            HomeScreen.pageName,
-            arguments: tipController.text, //TODO FIGHURE OUT HOW TO TRANFER 2 THINGS
+          widget.hackP = widget.tipController.text;
+          widget.titleP = widget.titleController.text;
+
+          print(widget.hackP);
+          print(widget.titleP);
+
+          Navigator.pushNamed(context,
+              HomeScreen.pageName,
+            arguments: widget.hackP
           );
 
           showDialog(
             context: context,
             builder: (context) {
               return AlertDialog(
-                // Retrieve the text the that user has entered by using the
-                // TextEditingController.
-                content: Text("Your Tip is Published! " ),
-
+                content: Text("Your Hack is Published!"),
               );
             },
           );
 
-          titleController.clear();
-          tipController.clear();
+          widget.titleController.clear();
+          widget.tipController.clear();
         },
         tooltip: 'Show me the value!',
         child: const Icon(Icons.add),
+        backgroundColor: Colors.green,
       ),
     );
   }
 }
+
+

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_03/homePage.dart';
+import 'package:project_03/profilePage.dart';
 
 void main(){
   runApp(MyApp());
@@ -45,13 +46,27 @@ class _signInState extends State<signIn> {
         backgroundColor: Colors.orange,
         title: const Text('Miami Hacks'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: TextField(
-          decoration: InputDecoration(
-              hintText: 'Username'),
-          controller: uName,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              alignment: Alignment.center,
+                child: Text("Sign In",style: TextStyle(fontSize: 35),),),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: 'First and Last Name',
+                    hoverColor: Colors.green,
+                fillColor: Colors.green),
 
+                controller: uName,
+
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -59,12 +74,15 @@ class _signInState extends State<signIn> {
         // the text that the user has entered into the text field.
 
         onPressed: () {
-          if (uName.text == "Diego") {
+          if (uName.text == "Diego Cicotoste") {
+
             Navigator.pushNamed(
               context,
               HomeScreen.pageName,
-              arguments: uName.text,
+             arguments: uName.text,
             );
+
+
 
 
             showDialog(
@@ -78,7 +96,7 @@ class _signInState extends State<signIn> {
                 );
               },
             );
-          } else if (uName.text == "David") {
+          } else if (uName.text == "David Galotto") {
             Navigator.pushNamed(
               context,
               HomeScreen.pageName,
@@ -95,7 +113,24 @@ class _signInState extends State<signIn> {
                 );
               },
             );
-          } else {
+          } else if (uName.text == "Tokyo Japan") {
+            Navigator.pushNamed(
+              context,
+              HomeScreen.pageName,
+              arguments: uName.text,
+            );
+
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  // Retrieve the text the that user has entered by using the
+                  // TextEditingController.
+                  content: Text("Welcome " + uName.text),
+                );
+              },
+            );
+          }else {
             showDialog(
               context: context,
               builder: (context) {
@@ -109,6 +144,7 @@ class _signInState extends State<signIn> {
         },
         tooltip: 'Show me the value!',
         child: const Icon(Icons.arrow_circle_right),
+        backgroundColor: Colors.green,
       ),
     );
   }
