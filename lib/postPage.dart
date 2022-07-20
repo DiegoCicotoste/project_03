@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_03/miamihackspost.dart';
 import 'homePage.dart';
 
 void main(){
@@ -26,10 +27,9 @@ class postPage extends StatefulWidget {
   final titleController = TextEditingController();
   final tipController = TextEditingController();
 
-  String titleP = "";
-  String hackP = "";
+  String titleF = "";
+  String tipF = "";
 
-  postPage({required this.titleP, required this.hackP});
 
   @override
   State<postPage> createState() => _postPage();
@@ -41,14 +41,6 @@ class _postPage extends State<postPage> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
 
-
-
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    widget.titleController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,15 +83,18 @@ class _postPage extends State<postPage> {
       floatingActionButton: FloatingActionButton(
 
         onPressed: () {
-          widget.hackP = widget.tipController.text;
-          widget.titleP = widget.titleController.text;
 
-          print(widget.hackP);
-          print(widget.titleP);
+          widget.titleF = widget.titleController.text;
+          widget.tipF = widget.tipController.text;
+
+          print(widget.titleF);
+          print(widget.tipF);
+
+          MiamiHacksPost mhp = MiamiHacksPost(titleMessage:widget.titleF,tipMessage:widget.tipF,userName: "");
 
           Navigator.pushNamed(context,
               HomeScreen.pageName,
-            arguments: widget.hackP
+              arguments:mhp,
           );
 
           showDialog(
@@ -111,8 +106,6 @@ class _postPage extends State<postPage> {
             },
           );
 
-          widget.titleController.clear();
-          widget.tipController.clear();
         },
         tooltip: 'Show me the value!',
         child: const Icon(Icons.add),
@@ -121,5 +114,9 @@ class _postPage extends State<postPage> {
     );
   }
 }
+
+
+
+
 
 

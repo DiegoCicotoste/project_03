@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_03/main.dart';
+import 'package:project_03/miamihackspost.dart';
 import 'package:project_03/postPage.dart';
 import 'package:project_03/postPageUpdated.dart';
 import 'package:project_03/profilePage.dart';
@@ -40,8 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final name = ModalRoute.of(context)!.settings.arguments as String ?? " ";
-
     return Scaffold(
 
       appBar: AppBar(
@@ -66,12 +65,12 @@ class _HomeScreenState extends State<HomeScreen> {
               print("post");
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => postPage(titleP: '', hackP: '',)),
+                MaterialPageRoute(builder: (context) => postPage()),
               );
             }
+
             if(value == 2){
               print("profile");
-
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => profilePage()),
@@ -137,8 +136,8 @@ class _homePostState extends State<homePost> {
   @override
   Widget build(BuildContext context) {
 
-    final title = ModalRoute.of(context)!.settings.arguments as String ?? " ";
-    final description = ModalRoute.of(context)!.settings.arguments as String ?? " " ;
+    final post = ModalRoute.of(context)!.settings.arguments as MiamiHacksPost ?? MiamiHacksPost(titleMessage: " ", tipMessage: "", userName: " ");
+
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,7 +147,7 @@ class _homePostState extends State<homePost> {
             margin: EdgeInsets.all(10),
             width: 350,
             child: TextButton(
-              child: Text(title,
+              child: Text(post.titleMessage,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25),),
@@ -160,8 +159,8 @@ class _homePostState extends State<homePost> {
               onPressed: (){
                 showDialog(context: context,
                   builder: (context) => AlertDialog(
-                    title: Text(title),
-                    content: Text(description),
+                    title: Text(post.titleMessage),
+                    content: Text(post.tipMessage),
                     actions: [
                       TextButton(child: Text('OK'),
                         onPressed: () => Navigator.pop(context), )

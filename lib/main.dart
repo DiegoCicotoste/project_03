@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_03/homePage.dart';
+import 'package:project_03/miamihackspost.dart';
 import 'package:project_03/profilePage.dart';
+
 
 void main(){
   runApp(MyApp());
@@ -79,7 +81,7 @@ class _signInState extends State<signIn> {
             Navigator.pushNamed(
               context,
               HomeScreen.pageName,
-             arguments: uName.text,
+             arguments: MiamiHacksPost(titleMessage: "", tipMessage: "", userName: uName.text),
             );
 
 
