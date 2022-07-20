@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
-import 'homePage.dart';
+import 'package:flutter/services.dart';
+import 'package:project_03/homePage.dart';
+import 'package:project_03/miamihackspost.dart';
+
+void main(){
+  runApp(MyApp());
+
+}
+
+String drop = '2015';
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
 
-
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'College Yelp',
+      theme: ThemeData(
+        primaryColor: Colors.orange,
+      ),
+      home: profilePage(),
+    );
+  }
+}
 
 // Define a custom Form widget.
 class profilePage extends StatefulWidget {
-
-  static final String profile = "/profilePage";
-
-  String drop = '2015';
+  const profilePage({super.key});
 
   @override
   State<profilePage> createState() => _profilePage();
@@ -34,7 +52,8 @@ class _profilePage extends State<profilePage> {
   @override
   Widget build(BuildContext context) {
 
-    final name = ModalRoute.of(context)!.settings.arguments as String ?? " ";
+    final profileInfo = ModalRoute.of(context)!.settings.arguments as MiamiHacksPost;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -51,21 +70,62 @@ class _profilePage extends State<profilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
 
           children: [
-            Text(name, style: TextStyle(fontSize: 25),),
+            Text(profileInfo.userName, style: TextStyle(fontSize: 25),),
             Container(
               child: Row(
                   children: [
                     Text("Date of Birth:  ", style: TextStyle(fontSize: 25),),
                     ConstrainedBox(
                       constraints: BoxConstraints(
-                        maxWidth: 100,
+                        maxWidth: 40,
                       ),
                       child: TextField(
                         decoration: InputDecoration(
-                            hintText: 'mm/dd/yy'),
+                            hintText: 'mm'),
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         style: TextStyle(fontSize: 20, color: Colors.green),
 
-                        controller: myController,
+                      ),
+
+                    ),
+                    Text('/ '),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: 30,
+                      ),
+                      child: TextField(
+
+
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+
+                        decoration: InputDecoration(
+                            hintText: 'dd'),
+
+                        style: TextStyle(fontSize: 20, color: Colors.green),
+
+                      ),
+
+                    ),
+                    Text('/ '),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: 30,
+                      ),
+                      child: TextField(
+                        decoration: InputDecoration(
+                            hintText: 'yy'),
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        style: TextStyle(fontSize: 20, color: Colors.green),
 
                       ),
 
@@ -86,7 +146,7 @@ class _profilePage extends State<profilePage> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: DropdownButton<String>(
-                        value: widget.drop,
+                        value: drop,
                         icon: const Icon(Icons.arrow_downward, color: Colors.green,),
                         elevation: 16,
                         style: const TextStyle(color: Colors.green, fontSize: 20),
@@ -96,7 +156,7 @@ class _profilePage extends State<profilePage> {
                         ),
                         onChanged: (String? newValue) {
                           setState(() {
-                            widget.drop = newValue!;
+                            drop = newValue!;
                           });
                         },
                         items: <String>['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023','2024', '2025', '2026']

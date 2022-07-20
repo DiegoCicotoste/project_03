@@ -102,7 +102,7 @@ class _signInState extends State<signIn> {
             Navigator.pushNamed(
               context,
               HomeScreen.pageName,
-              arguments: uName.text,
+              arguments: MiamiHacksPost(titleMessage: "", tipMessage: "", userName: uName.text),
             );
 
             showDialog(
@@ -119,7 +119,7 @@ class _signInState extends State<signIn> {
             Navigator.pushNamed(
               context,
               HomeScreen.pageName,
-              arguments: uName.text,
+              arguments: MiamiHacksPost(titleMessage: "", tipMessage: "", userName: uName.text),
             );
 
             showDialog(
