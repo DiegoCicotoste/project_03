@@ -29,10 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //home page
      post(),
     post(),
-    Text(
-      'Index 2: Profile',
-      style: optionStyle,
-    ),
+    post(),
   ];
 
   @override
@@ -112,11 +109,13 @@ class _postState extends State<post> {
   @override
   Widget build(BuildContext context) {
 
-    return Column(
+    return ListView(
       children: [
         homePost(),
         alreadyInputedCode(dummyTitle: "Fast Ramen!!", dummyTip: "For this cooking recepi we need a kettle, bowl, and a ramen package. First heat up your water in the kettle. As the water is heating up get the ramen and put it inside the bowl with the flavors. When the water is done heating just put the hot water in the bowl and wait 5 minutes. AND YOU SHOULD HAVE A GREAT RAMEN!!!",),
-        alreadyInputedCode(dummyTitle: "Shrink Clothes", dummyTip: "if you bought clothes and they are a little too big, insead of returning it just put it in the dryer/wash everyday on hot water till it shrinks"),
+        alreadyInputedCode(dummyTitle: "Shrink Clothes", dummyTip: "if you bought clothes and they are a little too big, instead of returning it just put it in the dryer/wash everyday on hot water till it shrinks"),
+        alreadyInputedCode(dummyTitle: "Clothes", dummyTip: "DO NOT DO THIS MISTAKE, re use your clothes or you will need to wash it like a lot"),
+
       ],
     );
 

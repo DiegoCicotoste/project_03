@@ -1,46 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:project_03/homePage.dart';
 import 'package:project_03/miamihackspost.dart';
 
 void main(){
-  runApp(MyApp());
-
+  runApp(profilePage());
 }
 
-String drop = '2015';
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'College Yelp',
-      theme: ThemeData(
-        primaryColor: Colors.orange,
-      ),
-      home: profilePage(),
-    );
-  }
-}
-
-// Define a custom Form widget.
 class profilePage extends StatefulWidget {
-  const profilePage({super.key});
+
+  static final String pageName = "/profilePage";
 
   @override
   State<profilePage> createState() => _profilePage();
 }
 
-// Define a corresponding State class.
-// This class holds the data related to the Form.
 class _profilePage extends State<profilePage> {
-  // Create a text controller and use it to retrieve the current value
-  // of the TextField.
+
   final myController = TextEditingController();
   final myController2 = TextEditingController();
 
+  String drop = '2015';
 
   @override
   void dispose() {
@@ -51,8 +30,6 @@ class _profilePage extends State<profilePage> {
 
   @override
   Widget build(BuildContext context) {
-
-    final profileInfo = ModalRoute.of(context)!.settings.arguments as MiamiHacksPost;
 
 
     return Scaffold(
@@ -65,12 +42,10 @@ class _profilePage extends State<profilePage> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
 
-
-
           crossAxisAlignment: CrossAxisAlignment.start,
 
           children: [
-            Text(profileInfo.userName, style: TextStyle(fontSize: 25),),
+            Text(""),
             Container(
               child: Row(
                   children: [
@@ -84,7 +59,8 @@ class _profilePage extends State<profilePage> {
                             hintText: 'mm'),
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.digitsOnly
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(2),
                         ],
                         style: TextStyle(fontSize: 20, color: Colors.green),
 
@@ -97,21 +73,14 @@ class _profilePage extends State<profilePage> {
                         maxWidth: 30,
                       ),
                       child: TextField(
-
-
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
-
+                          LengthLimitingTextInputFormatter(2),
                           FilteringTextInputFormatter.digitsOnly
                         ],
-
-                        decoration: InputDecoration(
-                            hintText: 'dd'),
-
+                        decoration: InputDecoration(hintText: 'dd'),
                         style: TextStyle(fontSize: 20, color: Colors.green),
-
                       ),
-
                     ),
                     Text('/ '),
                     ConstrainedBox(
@@ -123,14 +92,12 @@ class _profilePage extends State<profilePage> {
                             hintText: 'yy'),
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
+                          LengthLimitingTextInputFormatter(2),
                           FilteringTextInputFormatter.digitsOnly
                         ],
                         style: TextStyle(fontSize: 20, color: Colors.green),
-
                       ),
-
                     ),
-
                   ]
               ),
             ),
@@ -178,9 +145,6 @@ class _profilePage extends State<profilePage> {
 
 
       floatingActionButton: FloatingActionButton(
-        // When the user presses the button, show an alert dialog containing
-        // the text that the user has entered into the text field.
-
         onPressed: () {
 
 
