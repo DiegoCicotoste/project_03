@@ -219,6 +219,7 @@ class alreadyInputedCode extends StatefulWidget {
 
   String dummyTitle = "";
   String dummyTip = "";
+
   int dummyLikes = Random().nextInt(100);
 
   alreadyInputedCode({required this.dummyTitle, required this.dummyTip});
