@@ -188,23 +188,30 @@ class _homePostState extends State<homePost> {
                   ),);
               },)
         ),
-        Container(
-          child: IconButton(icon: Icon(Icons.thumb_up),
-            color: widget.iconColor,
-            onPressed: () {
+        Row(
+          children: [
+            Container(
+              child: IconButton(icon: Icon(Icons.thumb_up),
+                color: widget.iconColor,
+                onPressed: () {
 
-              if(widget.iconColor == Colors.blue) {
-                setState(() {
-                  widget.iconColor = Colors.grey;
-                });
-              }
-              else {
-                setState(() {
-                  widget.iconColor = Colors.blue;
-                });
-              }
+                  if(widget.iconColor == Colors.blue) {
+                    setState(() {
+                      widget.iconColor = Colors.grey;
+                      post.likeCount--;
+                    });
+                  }
+                  else {
+                    setState(() {
+                      widget.iconColor = Colors.blue;
+                      post.likeCount ++;
+                    });
+                  }
 
-            },),
+                },),
+            ),
+            Text(post.likeCount.toString()),
+          ],
         )
 
       ],
