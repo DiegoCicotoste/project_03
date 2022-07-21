@@ -8,7 +8,9 @@ void main(){
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
 
 // Define a custom Form widget.
 class postPage extends StatefulWidget {
+
+  static final String postP = "/postPage";
 
   final titleController = TextEditingController();
   final tipController = TextEditingController();
@@ -45,7 +49,7 @@ class _postPage extends State<postPage> {
   @override
   Widget build(BuildContext context) {
 
-
+    final data = ModalRoute.of(context)!.settings.arguments as MiamiHacksPost;
 
     return Scaffold(
       appBar: AppBar(
@@ -93,7 +97,7 @@ class _postPage extends State<postPage> {
           print(widget.titleF);
           print(widget.tipF);
 
-          MiamiHacksPost mhp = MiamiHacksPost(titleMessage:widget.titleF,tipMessage:widget.tipF,userName: "",day: "", month: "", year: "", graduationY: "");
+          MiamiHacksPost mhp = MiamiHacksPost(titleMessage:widget.titleF,tipMessage:widget.tipF, userName: data.userName);
 
           Navigator.pushNamed(context,
               HomeScreen.pageName,

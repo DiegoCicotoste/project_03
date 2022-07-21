@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project_03/ProfilePageUPDATED.dart';
 import 'package:project_03/homePage.dart';
 import 'package:project_03/miamihackspost.dart';
+import 'package:project_03/postPage.dart';
+import 'package:project_03/profilaData.dart';
 import 'package:project_03/profilePage.dart';
 
 
@@ -21,6 +24,8 @@ class MyApp extends StatelessWidget {
         '/': (context) =>  signIn(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         HomeScreen.pageName : (context) =>  HomeScreen(),
+        postPage.postP : (context) => postPage(),
+        profileU.profilePage : (context) => profileU(),
       },
     );
   }
@@ -50,9 +55,12 @@ class _signInState extends State<signIn> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+        Padding(
+        padding: const EdgeInsets.all(30.0),
+          child: Center(child: Image(image: NetworkImage('https://cdn.miami.edu/_assets-common/images/system/um-print-logo.png'))),
+    ),
             Container(
               alignment: Alignment.center,
                 child: Text("Sign In",style: TextStyle(fontSize: 35),),),
@@ -81,7 +89,7 @@ class _signInState extends State<signIn> {
             Navigator.pushNamed(
               context,
               HomeScreen.pageName,
-             arguments: MiamiHacksPost(titleMessage: "Try Posting Something!", tipMessage: "Just Press The Post Button and post your hack", userName: uName.text,day: "", month: "", year: "", graduationY: ""),
+             arguments: MiamiHacksPost(titleMessage: "Try Posting Something", tipMessage: "Just click on the plus button and write your hack", userName: uName.text),
             );
             showDialog(
               context: context,
@@ -98,7 +106,7 @@ class _signInState extends State<signIn> {
             Navigator.pushNamed(
               context,
               HomeScreen.pageName,
-              arguments: MiamiHacksPost(titleMessage: "Try Posting Something!", tipMessage: "Just Press The Post Button and post your hack", userName: uName.text, day: "", month: "", year: "", graduationY: ""),
+              arguments: MiamiHacksPost(titleMessage: "Try Posting Something", tipMessage: "Just click on the plus button and write your hack", userName: uName.text),
             );
 
             showDialog(
@@ -115,7 +123,7 @@ class _signInState extends State<signIn> {
             Navigator.pushNamed(
               context,
               HomeScreen.pageName,
-              arguments: MiamiHacksPost(titleMessage: "Try Posting Something!", tipMessage: "Just Press The Post Button and post your hack", userName: uName.text,day: "", month: "", year: "", graduationY: ""),
+              arguments: MiamiHacksPost(titleMessage: "Try Posting Something", tipMessage: "Just click on the plus button and write your hack",userName: uName.text),
             );
 
             showDialog(

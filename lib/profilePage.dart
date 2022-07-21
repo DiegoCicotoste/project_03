@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_03/homePage.dart';
 import 'package:project_03/miamihackspost.dart';
+import 'package:project_03/profilaData.dart';
 
 void main(){
   runApp(profilePage());
@@ -23,10 +24,12 @@ class _profilePage extends State<profilePage> {
   final dayC = TextEditingController();
   final monthC = TextEditingController();
   final yearC = TextEditingController();
+  final usernameC = TextEditingController();
 
   String dayB = "";
   String monthB = "";
   String yearB = "";
+  String usernameB = "";
 
   String drop = '2015';
 
@@ -39,6 +42,7 @@ class _profilePage extends State<profilePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
@@ -52,7 +56,12 @@ class _profilePage extends State<profilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
 
           children: [
-            Text(""),
+            TextField(
+              controller: usernameC,
+              decoration: InputDecoration(
+                hintText: "username"
+              ),
+            ),
             Container(
               child: Row(
                   children: [
@@ -64,7 +73,7 @@ class _profilePage extends State<profilePage> {
                       child: TextField(
                         controller: monthC,
                         decoration: InputDecoration(
-                            hintText: 'mm'),
+                            hintText: ""),
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly,
@@ -87,7 +96,7 @@ class _profilePage extends State<profilePage> {
                           LengthLimitingTextInputFormatter(2),
                           FilteringTextInputFormatter.digitsOnly
                         ],
-                        decoration: InputDecoration(hintText: 'dd'),
+                        decoration: InputDecoration(hintText: ""),
                         style: TextStyle(fontSize: 20, color: Colors.green),
                       ),
                     ),
@@ -99,7 +108,7 @@ class _profilePage extends State<profilePage> {
                       child: TextField(
                         controller: yearC,
                         decoration: InputDecoration(
-                            hintText: 'yy'),
+                            hintText: ""),
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
                           LengthLimitingTextInputFormatter(2),
@@ -174,11 +183,10 @@ class _profilePage extends State<profilePage> {
           dayB = dayC.text;
           monthB = monthC.text;
           yearB = yearC.text;
+          usernameB = usernameC.text;
 
-          Navigator.pushNamed(
-            context,
+          Navigator.pushNamed(context,
             HomeScreen.pageName,
-            arguments: MiamiHacksPost(titleMessage: "", tipMessage: "", userName: "",day: dayB, month: monthB, year: yearB, graduationY: drop),
           );
 
           showDialog(
